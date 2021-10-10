@@ -1,0 +1,16 @@
+.form__navigation-link {
+  padding-top: 15px;
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  text-align: center;
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: opacity .5s;
+}
+
+.form__navigation-link:hover {
+  opacity: .8;
+}

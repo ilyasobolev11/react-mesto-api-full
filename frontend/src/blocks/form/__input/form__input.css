@@ -1,0 +1,28 @@
+.form__input {
+  width: 358px;
+  display: block;
+  padding: 5px 0 8px;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 2px solid rgb(204, 204, 204);
+  background-color: transparent;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #fff;
+}
+
+.form__input::placeholder {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #ccc;
+}
+
+.form__input:focus {
+  outline: none;
+}

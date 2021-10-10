@@ -1,0 +1,14 @@
+.header__navbar {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.header__navbar li {
+  margin-right: 24px;
+}
+
+.header__navbar li:last-of-type {
+  margin-right: 0;
+}

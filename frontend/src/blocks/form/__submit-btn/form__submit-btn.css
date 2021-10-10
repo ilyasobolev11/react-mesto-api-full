@@ -1,0 +1,28 @@
+.form__submit-btn {
+  width: 358px;
+  height: 49px;
+  display: block;
+  padding: 14px 0 14px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 0;
+  border-radius: 2px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  text-align: center;
+  color: #000;
+  transition: opacity .5s;
+}
+
+.form__submit-btn:hover {
+  opacity: .85;
+  cursor: pointer;
+}
+
+.form__submit-btn:focus {
+  outline: none;
+  /* box-shadow: 0 0 10px #000; */
+}
