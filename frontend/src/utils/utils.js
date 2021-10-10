@@ -22,8 +22,8 @@ const submitButtonTextConfig = {
 }
 
 const apiConfig = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-20',
-  token: {authorization: '614d3213-6f90-4cae-80f4-7341542ff306'}
+  url: 'https://api.mesto-app.nomoredomains.club',
+  headers: { credentials: 'include' }
 }
 
 const tooltipMessages = {

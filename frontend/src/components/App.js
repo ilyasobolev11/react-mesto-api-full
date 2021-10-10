@@ -127,8 +127,8 @@ function App() {
   }
 
   function handleLogout() {
+    // занулить куки на сервере
     history.push('/sign-in');
-    localStorage.removeItem('JWT');
     setLoggedIn(false);
     setCurrentUser(null);
     setCards([]);
@@ -136,12 +136,9 @@ function App() {
 
   function handleAuthorizeUser(userData) {
     authApi.authorize(userData)
-      .then(data => {
-        if (data.token) {
-          localStorage.setItem('JWT', data.token);
-          handleLogin({email: userData.email});
-          history.push('/');
-        }
+      .then(() => {
+        handleLogin({email: userData.email});
+        history.push('/');
       })
       .catch((err) => {
         console.log(err);

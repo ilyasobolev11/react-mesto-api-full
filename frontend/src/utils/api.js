@@ -1,9 +1,9 @@
 import {apiConfig} from './utils.js';
 
 class Api {
-  constructor({url, token}) {
+  constructor({url, headers}) {
     this._url = url;
-    this._token = token;
+    this._headers = headers;
   }
 
   _getResponseBody(res, textErr) {
@@ -15,14 +15,14 @@ class Api {
 
   getUserData() {
     return fetch(`${this._url}/users/me`, {
-      headers: this._token
+      headers: this._headers
     })
       .then((res) => this._getResponseBody(res, 'getUserData'));
   }
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
-      headers: this._token
+      headers: this._headers
     })
       .then((res) => this._getResponseBody(res, 'getInitialCards'));
   }
@@ -31,7 +31,7 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: {
-        ...this._token,
+        ...this._headers,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(userData)
@@ -43,7 +43,7 @@ class Api {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        ...this._token,
+        ...this._headers,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(avatar)
@@ -55,7 +55,7 @@ class Api {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {
-        ...this._token,
+        ...this._headers,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(cardData)
@@ -66,7 +66,7 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._token
+      headers: this._headers
     })
       .then((res) => this._getResponseBody(res, 'deleteCard'))
   }
@@ -74,7 +74,7 @@ class Api {
   changeLikeCardStatus(cardId, likeStatus) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: likeStatus ? 'PUT' : 'DELETE',
-      headers: this._token
+      headers: this._headers
     })
       .then((res) => this._getResponseBody(res, 'changeLikeCardStatus'))
   }

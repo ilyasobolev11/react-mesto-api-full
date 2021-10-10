@@ -1,4 +1,7 @@
-const BASE_URL = 'https://auth.nomoreparties.co';
+import { apiConfig } from './utils'
+
+const BASE_URL = apiConfig.url;
+const HEADERS = apiConfig.headers;
 
 function checkResponse(res) {
   if (res.ok) {
@@ -29,13 +32,11 @@ export function authorize(userData) {
     .then(checkResponse);
 }
 
-export function getUserData(token) {
+// Удалить?
+export function getUserData() {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    }
+    headers: HEADERS
   })
     .then(checkResponse);
 }
