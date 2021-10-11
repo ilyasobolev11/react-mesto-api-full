@@ -111,15 +111,18 @@ async function loginUser(req, res, next) {
       { expiresIn: '7d' },
     );
 
-    res.cookie(
-      'jwt',
-      token,
-      {
-        maxAge: 604800,
-        httpOnly: true,
-        sameSite: true,
-      },
-    ).end();
+    res
+      .status(204)
+      .cookie(
+        'jwt',
+        token,
+        {
+          maxAge: 604800,
+          httpOnly: true,
+          sameSite: true,
+        },
+      )
+      .end();
   } catch (err) {
     next(err);
   }

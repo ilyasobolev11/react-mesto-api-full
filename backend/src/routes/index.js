@@ -15,6 +15,10 @@ routes.use(requestLogger);
 routes.post('/signup', registerUserReqValidator, createUser);
 routes.post('/signin', authUserReqValidator, loginUser);
 
+routes.use((req, res, next) => {
+  console.log(req.cookies);
+  next();
+});
 routes.use(authReqValidator, authUser);
 
 routes.use('/users', usersRouter);

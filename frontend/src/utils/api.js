@@ -1,9 +1,9 @@
 import {apiConfig} from './utils.js';
 
 class Api {
-  constructor({url, headers}) {
+  constructor({url, options}) {
     this._url = url;
-    this._headers = headers;
+    this._options = options;
   }
 
   _getResponseBody(res, textErr) {
@@ -15,14 +15,14 @@ class Api {
 
   getUserData() {
     return fetch(`${this._url}/users/me`, {
-      headers: this._headers
+      ...this._options
     })
       .then((res) => this._getResponseBody(res, 'getUserData'));
   }
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
-      headers: this._headers
+      ...this._options
     })
       .then((res) => this._getResponseBody(res, 'getInitialCards'));
   }
@@ -30,8 +30,8 @@ class Api {
   updateUserData(userData) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
+      ...this._options,
       headers: {
-        ...this._headers,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(userData)
@@ -42,8 +42,8 @@ class Api {
   updateAvatar(avatar) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
+      ...this._options,
       headers: {
-        ...this._headers,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(avatar)
@@ -54,8 +54,8 @@ class Api {
   addCard(cardData) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
+      ...this._options,
       headers: {
-        ...this._headers,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(cardData)
@@ -66,15 +66,15 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers
+      ...this._options
     })
       .then((res) => this._getResponseBody(res, 'deleteCard'))
   }
 
   changeLikeCardStatus(cardId, likeStatus) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: likeStatus ? 'PUT' : 'DELETE',
-      headers: this._headers
+      ...this._options
     })
       .then((res) => this._getResponseBody(res, 'changeLikeCardStatus'))
   }

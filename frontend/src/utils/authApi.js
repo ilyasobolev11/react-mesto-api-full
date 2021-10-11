@@ -1,9 +1,10 @@
 import { apiConfig } from './utils'
 
 const BASE_URL = apiConfig.url;
-const HEADERS = apiConfig.headers;
+const OPTIONS = apiConfig.options;
 
 function checkResponse(res) {
+  if (res.status === 204) return;
   if (res.ok) {
     return res.json();
   }
@@ -36,7 +37,7 @@ export function authorize(userData) {
 export function getUserData() {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
-    headers: HEADERS
+    ...OPTIONS
   })
     .then(checkResponse);
 }

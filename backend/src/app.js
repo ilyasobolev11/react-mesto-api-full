@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const routes = require('./routes');
 
@@ -14,12 +15,24 @@ const limiter = rateLimit({
   max: 100,
   message: 'Превышено максимально допустимое количетво запросов',
 });
+const whiteList = ['http://api.mesto-app.nomoredomains.club', 'https://api.mesto-app.nomoredomains.club', 'http://localhost:3000'];
+const corsOptions = {
+  origin(origin, callback) {
+    if (whiteList.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
 });
 
 app.use(limiter);
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());

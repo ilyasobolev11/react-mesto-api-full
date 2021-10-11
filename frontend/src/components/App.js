@@ -147,17 +147,14 @@ function App() {
   }
 
   React.useEffect(() => {
-    const jwt = localStorage.getItem('JWT');
-    if (jwt) {
-      authApi.getUserData(jwt)
-        .then(({data}) => {
-          handleLogin({email: data.email})
+      authApi.getUserData()
+        .then(({email}) => {
+          if (email) {
+            handleLogin({email})
+          }
           setInitialLoad(false);
         })
         .catch((err) => console.log(err));
-    } else {
-      setInitialLoad(false);
-    }
   }, []);
 
   React.useEffect(() => {
