@@ -1,6 +1,6 @@
 const { BadRequestError } = require('../middlewares/error');
 
-const uriRegExp = /^https?:\/\/(www\.)?[-\w]+\.[a-z]{2,}[\w\-._~:/?#[\]@!$&'()*+,;=]*$/;
+const uriRegExp = /^https?:\/\/(www\.)?([-\w]+\.)+[a-z]{3,}[\w\-._~:/?#[\]@!$&'()*+,;=]*$/;
 
 function isExist(...args) {
   const error = args.pop();
@@ -10,8 +10,6 @@ function isExist(...args) {
   }
 }
 
-// реализовано в соответствии с заданием
-// не используется, т.к. установлен npm пакет validator
 function url(target) {
   return uriRegExp.test(target);
 }
@@ -22,7 +20,6 @@ function password(target) {
   }
 }
 
-// validator перестал использоваться после подключения и настройки celebrate и Joi
 module.exports = {
   uriRegExp,
   validator: {

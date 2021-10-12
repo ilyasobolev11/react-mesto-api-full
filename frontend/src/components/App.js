@@ -84,7 +84,7 @@ function App() {
   function handleAddPlaceSubmit(newCard) {
     api.addCard(newCard)
       .then((card) => {
-        setCards([card, ...cards]);
+        setCards([...cards, card]);
         closeAllPopups();
       })
       .catch(err => console.log(err));
@@ -93,15 +93,15 @@ function App() {
   function handleCardLike(targetCard, isLiked) {
     api.changeLikeCardStatus(targetCard._id, !isLiked)
       .then(newCard => {
-        setCards((state) => state.map(card => card._id === targetCard._id ? newCard : card))
+        setCards((state) => state.map(card => card._id === newCard._id ? newCard : card))
       })
       .catch((err) => console.log(err));
   }
 
   function handleCardDelete(targetCard) {
     api.deleteCard(targetCard._id)
-      .then(() => {
-        setCards((state) => state.filter(card => card._id !== targetCard._id));
+      .then((deletedCard) => {
+        setCards((state) => state.filter(card => card._id !== deletedCard._id));
         closeAllPopups();
       })
       .catch((err) => console.log(err));
@@ -127,11 +127,14 @@ function App() {
   }
 
   function handleLogout() {
-    // занулить куки на сервере
-    history.push('/sign-in');
-    setLoggedIn(false);
-    setCurrentUser(null);
-    setCards([]);
+    authApi.logout()
+      .then(() => {
+        history.push('/sign-in');
+        setLoggedIn(false);
+        setCurrentUser(null);
+        setCards([]);
+      })
+      .catch((err) => console.log(err));
   }
 
   function handleAuthorizeUser(userData) {
@@ -152,9 +155,9 @@ function App() {
           if (email) {
             handleLogin({email})
           }
-          setInitialLoad(false);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => setInitialLoad(false));
   }, []);
 
   React.useEffect(() => {

@@ -46,7 +46,7 @@ function Main({isLoading, cards, onEditAvatar, onEditProfile, onAddPlace, ...pro
             ) :
             cards.length ? (
               <ul className="elements__list">
-                {cards.map(card => (
+                {[...cards].reverse().map(card => (
                   <Card
                     key={card._id}
                     card={card}

@@ -5,9 +5,9 @@ import imagePlaceholder from '../images/img-placeholder.jpg';
 function Card({card, onCardClick, onCardLike, onCardDelete}) {
   const [imgLink, setImgLink] = React.useState(card.link);
   const currentUser = React.useContext(CurrentUserContext);
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
   const cardDeleteBtnClassName = `elements__delete-btn ${isOwn && 'elements__delete-btn_visible'}`;
-  const isLiked = card.likes.some(item => item._id === currentUser._id);
+  const isLiked = card.likes.some(_id => _id === currentUser._id);
   const cardLikeBtnClassName = `elements__like-btn ${isLiked && 'elements__like-btn_active'}`;
 
   function handleImgClick() {

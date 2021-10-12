@@ -25,10 +25,19 @@ export function register(userData) {
 export function authorize(userData) {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
+    ...OPTIONS,
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(userData)
+  })
+    .then(checkResponse);
+}
+
+export function logout() {
+  return fetch(`${BASE_URL}/signout`, {
+    method: 'DELETE',
+    ...OPTIONS
   })
     .then(checkResponse);
 }

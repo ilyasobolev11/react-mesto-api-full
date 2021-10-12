@@ -117,11 +117,22 @@ async function loginUser(req, res, next) {
         'jwt',
         token,
         {
-          maxAge: 604800,
+          maxAge: 1000 * 60 * 60 * 24 * 7,
           httpOnly: true,
           sameSite: true,
         },
       )
+      .end();
+  } catch (err) {
+    next(err);
+  }
+}
+
+function logoutUser(req, res, next) {
+  try {
+    res
+      .status(204)
+      .clearCookie('jwt')
       .end();
   } catch (err) {
     next(err);
@@ -135,4 +146,5 @@ module.exports = {
   createUser,
   updateUser,
   loginUser,
+  logoutUser,
 };
