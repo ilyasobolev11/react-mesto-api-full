@@ -4,15 +4,14 @@
   "description": "backend of project mesto",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env PORT=3000 node ./src/app.js",
-    "dev": "cross-env PORT=3001 nodemon ./src/app.js",
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js",
     "lint": "npx eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sobolev",
   "license": "ISC",
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
@@ -23,6 +22,7 @@
     "celebrate": "^15.0.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.3.0",
     "express-winston": "^4.2.0",

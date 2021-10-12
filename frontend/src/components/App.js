@@ -150,7 +150,7 @@ function App() {
   }
 
   React.useEffect(() => {
-      authApi.getUserData()
+      api.getUserData()
         .then(({email}) => {
           if (email) {
             handleLogin({email})

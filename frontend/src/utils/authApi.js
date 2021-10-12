@@ -41,12 +41,3 @@ export function logout() {
   })
     .then(checkResponse);
 }
-
-// Удалить?
-export function getUserData() {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
-    ...OPTIONS
-  })
-    .then(checkResponse);
-}

@@ -5,6 +5,8 @@ const User = require('../models/user');
 const deleteTechProperties = require('../utils/deleteTechProperties');
 const { NoDataFoundError, ConflictError, BadRequestError } = require('../middlewares/error');
 
+const { JWT_SECRET = 'secret' } = process.env;
+
 async function getUsers(req, res, next) {
   try {
     const users = deleteTechProperties(
@@ -107,7 +109,7 @@ async function loginUser(req, res, next) {
 
     const token = jwt.sign(
       { _id: user._id },
-      'secret',
+      JWT_SECRET,
       { expiresIn: '7d' },
     );
 
