@@ -22,9 +22,8 @@ const submitButtonTextConfig = {
 }
 
 const apiConfig = {
-  url: 'http://localhost:3001', // http://localhost:3001 //https://api.mesto-app.nomoredomains.club
+  url: 'https://api.mesto-app.nomoredomains.club', // http://localhost:3001 // https://api.mesto-app.nomoredomains.club
   options: { credentials: 'include' }
-
 }
 
 const tooltipMessages = {

@@ -17,7 +17,7 @@ const limiter = rateLimit({
   max: 100,
   message: 'Превышено максимально допустимое количетво запросов',
 });
-const whiteList = ['http://mesto-app.nomoredomains.club', 'https://mesto-app.nomoredomains.club', 'http://localhost:3000'];
+const whiteList = ['http://mesto-app.nomoredomains.club', 'https://mesto-app.nomoredomains.club']; // http://localhost:3000
 const corsOptions = {
   origin(origin, callback) {
     if (whiteList.includes(origin)) {
